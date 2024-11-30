@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Result</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin: 20px 0;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            font-size: 1.6rem;
+            margin: 10px 0 20px;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        .image-container {
+            margin: 30px 0;
+            text-align: center;
+            width: 80%;
+            max-width: 600px; /* Limit the maximum width */
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            width: 80%; /* Make image smaller */
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .image-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            text-decoration: none;
+            background: #ff6f61;
+            color: #fff;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        a:hover {
+            background: #d9534f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        /* Add a subtle gradient effect to the link */
+        a:focus, a:active {
+            background: #d9534f;
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ result }}</h1>
+    <div class="image-container">
+        <!-- Ensure the image path is correctly relative to the 'static' folder -->
+        <img src="{{ url_for('static', filename='detected_object_frame/final_frame_with_box.jpg') }}" alt="Detected Object Image">
+    </div>
+    <a href="/">Go Back</a>
+</body>
+</html>

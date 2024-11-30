@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone and Bird Classification</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+            animation: backgroundAnimation 10s ease-in-out infinite;
+        }
+
+        @keyframes backgroundAnimation {
+            0%, 100% {
+                background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            }
+            50% {
+                background: linear-gradient(135deg, #2c5364, #203a43, #0f2027);
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: #ffdd57;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        input[type="file"] {
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            border-color: #ffdd57;
+        }
+
+        button {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #218838, #1e7e34);
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #17a2b8;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #f1f1f1;
+            font-size: 1rem;
+        }
+
+        p[style="color: red;"] {
+            color: #ff6f61;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        #loading {
+            margin-top: 20px;
+            display: none;
+            font-size: 1.1rem;
+            color: #17a2b8;
+            font-weight: bold;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <script>
+        function showLoading() {
+            const loadingMessage = document.getElementById('loading');
+            loadingMessage.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Drone Detector</h1>
+        <form action="/" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+            <label for="video_file">Upload Your Video:</label>
+            <input type="file" name="video_file" id="video_file" required>
+            <button type="submit">Process Video</button>
+        </form>
+        <p id="loading">Processing the video, please wait...</p>
+
+        {% if result %}
+        <h2>Classification Result:</h2>
+        <p><strong>{{ result }}</strong></p>
+        {% elif error %}
+        <p style="color: red;">Error: {{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
